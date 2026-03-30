@@ -3,11 +3,12 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Note } from '../interfaces/note.interface';
+import { NotesServiceInterface } from '../interfaces/notes-service.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class NotesApiService {
+export class NotesApiService implements NotesServiceInterface {
   private readonly httpClient = inject(HttpClient);
   private readonly apiUrl = 'http://localhost:3000/notes';
 

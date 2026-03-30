@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { Note } from '../interfaces/note.interface';
+import { NotesServiceInterface } from '../interfaces/notes-service.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LocalStorageNotesService {
+export class LocalStorageNotesService implements NotesServiceInterface {
   private readonly storageKey = 'notes';
 
   getNotes(): Observable<Note[]> {
