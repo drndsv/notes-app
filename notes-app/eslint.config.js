@@ -7,12 +7,7 @@ const importPlugin = require('eslint-plugin-import');
 
 module.exports = defineConfig([
   {
-    ignores: [
-      '**/node_modules',
-      '**/dist',
-      '**/out-tsc',
-      '**/coverage',
-    ],
+    ignores: ['**/node_modules', '**/dist', '**/out-tsc', '**/coverage'],
   },
   {
     files: ['**/*.ts'],
@@ -49,14 +44,7 @@ module.exports = defineConfig([
       'import/order': [
         'error',
         {
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            'parent',
-            'sibling',
-            'index',
-          ],
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
           'newlines-between': 'always',
           alphabetize: {
             order: 'asc',
