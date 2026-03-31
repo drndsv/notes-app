@@ -44,6 +44,6 @@ export class LocalStorageNotesService implements NotesServiceInterface {
       return 1;
     }
 
-    return Math.max(...notes.map((item) => Number(item.id)));
+    return Math.max(...notes.map((item) => Number(item.id))) + 1;
   }
 }

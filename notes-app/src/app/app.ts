@@ -69,21 +69,17 @@ export class App implements OnInit {
       return;
     }
 
-    const nextId =
-      this.notes.length > 0 ? Math.max(...this.notes.map((note) => Number(note.id))) + 1 : 1;
-
-    const newNote: Note = {
-      id: nextId,
-      title: trimmedTitle,
-      content: trimmedContent,
-    };
-
-    this.notesService.addNote(newNote).subscribe((createdNote) => {
-      this.notes = [...this.notes, createdNote];
-      this.title = '';
-      this.content = '';
-      this.cdr.markForCheck();
-    });
+    this.notesService
+      .addNote({
+        title: trimmedTitle,
+        content: trimmedContent,
+      })
+      .subscribe((createdNote) => {
+        this.notes = [...this.notes, createdNote];
+        this.title = '';
+        this.content = '';
+        this.cdr.markForCheck();
+      });
   }
 
   changeSource(source: NotesSource): void {
