@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { WA_LOCATION } from '@ng-web-apis/common';
@@ -35,6 +41,7 @@ import { NotesSource } from './types/notes-source.types';
 export class App implements OnInit {
   private readonly notesService = inject<NotesServiceInterface>(NOTES_SERVICE);
   private readonly location = inject(WA_LOCATION);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   protected readonly notesSourceService = inject(NotesSourceService);
 
@@ -50,12 +57,13 @@ export class App implements OnInit {
   loadNotes(): void {
     this.notesService.getNotes().subscribe((notes) => {
       this.notes = notes;
+      this.cdr.markForCheck();
     });
   }
 
-  addNote(): void {
-    const trimmedTitle = this.title.trim();
-    const trimmedContent = this.content.trim();
+  addNote(title: string, content: string): void {
+    const trimmedTitle = title.trim();
+    const trimmedContent = content.trim();
 
     if (!trimmedTitle || !trimmedContent) {
       return;
@@ -66,10 +74,11 @@ export class App implements OnInit {
         title: trimmedTitle,
         content: trimmedContent,
       })
-      .subscribe(() => {
+      .subscribe((newNote) => {
+        this.notes = [...this.notes, newNote];
         this.title = '';
         this.content = '';
-        this.loadNotes();
+        this.cdr.markForCheck();
       });
   }
 
