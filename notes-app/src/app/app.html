@@ -1,67 +1,57 @@
-<h1>Notes App</h1>
+<tui-root>
+  <h1>Notes App</h1>
 
-<div>
-  <label>
-    <input
-      type="radio"
-      name="source"
-      value="api"
-      [(ngModel)]="selectedSource"
-      (ngModelChange)="changeSource($event)"
-    />
-    API
-  </label>
+  <div>
+    <label>
+      <input
+        type="radio"
+        name="source"
+        value="api"
+        [(ngModel)]="selectedSource"
+        (ngModelChange)="changeSource($event)"
+      />
+      API
+    </label>
 
-  <label>
-    <input
-      type="radio"
-      name="source"
-      value="localStorage"
-      [(ngModel)]="selectedSource"
-      (ngModelChange)="changeSource($event)"
-    />
-    LocalStorage
-  </label>
-</div>
+    <label>
+      <input
+        type="radio"
+        name="source"
+        value="localStorage"
+        [(ngModel)]="selectedSource"
+        (ngModelChange)="changeSource($event)"
+      />
+      LocalStorage
+    </label>
+  </div>
 
-<hr />
+  <hr />
 
-<div>
-  <input
-    type="text"
-    [(ngModel)]="title"
-    placeholder="Title"
-  />
+  <div>
+    <input type="text" [(ngModel)]="title" placeholder="Title" />
 
-  <br />
-  <br />
+    <br />
+    <br />
 
-  <textarea
-    [(ngModel)]="content"
-    placeholder="Content"
-  ></textarea>
+    <textarea [(ngModel)]="content" placeholder="Content"></textarea>
 
-  <br />
-  <br />
+    <br />
+    <br />
 
-  <button
-    (click)="addNote()"
-    [disabled]="!title.trim() || !content.trim()"
-  >
-    Add note
-  </button>
-</div>
+    <button (click)="addNote()" [disabled]="!title.trim() || !content.trim()">Add note</button>
+  </div>
 
-<hr />
+  <hr />
 
-<div>
-  @for (note of notes; track note.id) {
-    <div>
-      <h3>{{ note.title }}</h3>
-      <p>{{ note.content }}</p>
-      <small>ID: {{ note.id }}</small>
-      <hr />
-    </div>
-  }
-</div>
-<router-outlet />
+  <div>
+    @for (note of notes; track note.id) {
+      <div>
+        <h3>{{ note.title }}</h3>
+        <p>{{ note.content }}</p>
+        <small>ID: {{ note.id }}</small>
+        <hr />
+      </div>
+    }
+  </div>
+  <router-outlet />
+</tui-root>

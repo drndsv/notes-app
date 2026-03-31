@@ -1,6 +1,8 @@
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, inject, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
+import { provideEventPlugins } from '@taiga-ui/event-plugins';
 
 import { routes } from './app.routes';
 import { LocalStorageNotesService } from './services/local-storage-notes.service';
@@ -8,9 +10,9 @@ import { NotesApiService } from './services/notes-api.service';
 import { NotesSourceService } from './services/notes-source.service';
 import { NOTES_SERVICE } from './tokens/notes-service.token';
 
-
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAnimations(),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideHttpClient(),
@@ -26,6 +28,7 @@ export const appConfig: ApplicationConfig = {
 
         return inject(NotesApiService);
       },
-    }
-  ]
+    },
+    provideEventPlugins(),
+  ],
 };

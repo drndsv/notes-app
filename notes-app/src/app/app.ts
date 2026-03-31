@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { WA_LOCATION } from '@ng-web-apis/common';
+import { TuiRoot } from '@taiga-ui/core';
 
 import { Note } from './interfaces/note.interface';
 import { NotesServiceInterface } from './interfaces/notes-service.interface';
@@ -9,10 +10,9 @@ import { NotesSourceService } from './services/notes-source.service';
 import { NOTES_SERVICE } from './tokens/notes-service.token';
 import { NotesSource } from './types/notes-source.types';
 
-
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FormsModule],
+  imports: [RouterOutlet, FormsModule, TuiRoot],
   templateUrl: './app.html',
   styleUrl: './app.less',
 })
