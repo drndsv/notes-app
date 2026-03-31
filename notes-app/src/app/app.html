@@ -1,57 +1,102 @@
 <tui-root>
-  <h1>Notes App</h1>
+  <div class="page">
+    <h1>Notes App</h1>
 
-  <div>
-    <label>
-      <input
-        type="radio"
-        name="source"
-        value="api"
-        [(ngModel)]="selectedSource"
-        (ngModelChange)="changeSource($event)"
-      />
-      API
-    </label>
+    <form class="page__form" (ngSubmit)="addNote()">
+      <div class="field">
+        <div class="label">Source</div>
 
-    <label>
-      <input
-        type="radio"
-        name="source"
-        value="localStorage"
-        [(ngModel)]="selectedSource"
-        (ngModelChange)="changeSource($event)"
-      />
-      LocalStorage
-    </label>
-  </div>
+        <div tuiGroup class="group" [collapsed]="true">
+          <label tuiBlock>
+            <input
+              tuiRadio
+              type="radio"
+              name="source"
+              value="api"
+              [(ngModel)]="selectedSource"
+              (ngModelChange)="changeSource($event)"
+            />
+            API
+          </label>
 
-  <hr />
-
-  <div>
-    <input type="text" [(ngModel)]="title" placeholder="Title" />
-
-    <br />
-    <br />
-
-    <textarea [(ngModel)]="content" placeholder="Content"></textarea>
-
-    <br />
-    <br />
-
-    <button (click)="addNote()" [disabled]="!title.trim() || !content.trim()">Add note</button>
-  </div>
-
-  <hr />
-
-  <div>
-    @for (note of notes; track note.id) {
-      <div>
-        <h3>{{ note.title }}</h3>
-        <p>{{ note.content }}</p>
-        <small>ID: {{ note.id }}</small>
-        <hr />
+          <label tuiBlock>
+            <input
+              tuiRadio
+              type="radio"
+              name="source"
+              value="localStorage"
+              [(ngModel)]="selectedSource"
+              (ngModelChange)="changeSource($event)"
+            />
+            LocalStorage
+          </label>
+        </div>
       </div>
-    }
+
+      <div class="field">
+        <label class="label" for="title">Title</label>
+
+        <tui-textfield>
+          <input
+            id="title"
+            tuiTextfield
+            type="text"
+            name="title"
+            [(ngModel)]="title"
+            placeholder="Title"
+          />
+        </tui-textfield>
+      </div>
+
+      <div class="field">
+        <label class="label" for="content">Content</label>
+
+        <tui-textfield>
+          <textarea
+            id="content"
+            tuiTextarea
+            name="content"
+            [(ngModel)]="content"
+            placeholder="Content"
+          ></textarea>
+        </tui-textfield>
+      </div>
+
+      <div class="page__actions">
+        <button
+          tuiButton
+          type="submit"
+          appearance="primary"
+          [disabled]="!title.trim() || !content.trim()"
+        >
+          Add note
+        </button>
+      </div>
+    </form>
+
+    <div class="notes">
+      @for (note of notes; track note.id) {
+        <section tuiCardLarge="compact" class="notes__card">
+          <header tuiHeader="body-m">
+            <hgroup tuiTitle>
+              <h2>{{ note.title }}</h2>
+              <p tuiSubtitle>Note</p>
+            </hgroup>
+
+            <aside tuiAccessories>
+              <span class="notes__id">ID: {{ note.id }}</span>
+            </aside>
+          </header>
+
+          <div tuiCardRow>
+            <div class="notes__content">
+              {{ note.content }}
+            </div>
+          </div>
+        </section>
+      }
+    </div>
+
+    <router-outlet />
   </div>
-  <router-outlet />
 </tui-root>

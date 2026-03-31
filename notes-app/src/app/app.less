@@ -1,0 +1,56 @@
+:host {
+  display: flex;
+  padding: 0 16px;
+  margin-top: 20px;
+}
+
+.page {
+  width: 100%;
+  max-width: 720px;
+
+  &__form {
+    width: 100%;
+    padding: 24px;
+    border-radius: 24px;
+    background: var(--tui-base-01);
+    border: 5px solid var(--tui-base-03);
+    box-shadow: var(--tui-shadow-small);
+    overflow: visible;
+    box-sizing: border-box;
+  }
+
+  &__actions {
+    margin-top: 16px;
+  }
+}
+
+.notes {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+
+  &__card {
+    inline-size: 100%;
+    border-radius: 16px;
+    border: 1px solid transparent;
+    background: var(--tui-base-01);
+    box-shadow: var(--tui-shadow-small);
+    box-sizing: border-box;
+
+    &:hover {
+      border-color: var(--tui-base-03);
+      box-shadow: var(--tui-shadow-medium);
+    }
+  }
+
+  &__content {
+    white-space: pre-wrap;
+  }
+
+  &__id {
+    color: var(--tui-text-secondary);
+    font-size: 0.875rem;
+  }
+}
