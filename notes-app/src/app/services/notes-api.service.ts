@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { environment } from '../../environments/environment';
 import { Note } from '../interfaces/note.interface';
 import { NotesServiceInterface } from '../interfaces/notes-service.interface';
 
@@ -10,7 +11,7 @@ import { NotesServiceInterface } from '../interfaces/notes-service.interface';
 })
 export class NotesApiService implements NotesServiceInterface {
   private readonly httpClient = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:3000/notes';
+  private readonly apiUrl = `${environment.apiUrl}/notes`;
 
   getNotes(): Observable<Note[]> {
     return this.httpClient.get<Note[]>(this.apiUrl);
