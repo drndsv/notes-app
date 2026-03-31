@@ -39,12 +39,11 @@ export class LocalStorageNotesService implements NotesServiceInterface {
     return notes ? (JSON.parse(notes) as Note[]) : [];
   }
 
-  private generateId(notes: Note[]): string {
+  private generateId(notes: Note[]): number {
     if (notes.length === 0) {
-      return '1';
+      return 1;
     }
 
-    const maxId = Math.max(...notes.map((item) => Number(item.id)));
-    return String(maxId + 1);
+    return Math.max(...notes.map((item) => Number(item.id)));
   }
 }
