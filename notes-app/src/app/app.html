@@ -37,15 +37,16 @@
         <label class="label" for="title">Title</label>
 
         <tui-textfield>
-          <input
+          <textarea
             id="title"
-            tuiTextfield
+            tuiTextarea
             type="text"
             name="title"
             [(ngModel)]="title"
             #titleModel="ngModel"
             placeholder="Title"
-          />
+            [limit]="50"
+          ></textarea>
         </tui-textfield>
       </div>
 
@@ -60,6 +61,7 @@
             [(ngModel)]="content"
             #contentModel="ngModel"
             placeholder="Content"
+            [limit]="200"
           ></textarea>
         </tui-textfield>
       </div>

@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { WA_LOCATION } from '@ng-web-apis/common';
 import { TuiButton, TuiGroup, TuiRoot, TuiTextfield, TuiTitle } from '@taiga-ui/core';
-import { TuiBlock, TuiRadio, TuiTextarea } from '@taiga-ui/kit';
+import { TuiBlock, TuiRadio, TuiTextarea, TuiTextareaLimit } from '@taiga-ui/kit';
 import { TuiCard, TuiHeader } from '@taiga-ui/layout';
 
 import { Note } from './interfaces/note.interface';
@@ -33,6 +33,7 @@ import { NotesSource } from './types/notes-source.types';
     TuiCard,
     TuiHeader,
     TuiTitle,
+    TuiTextareaLimit,
   ],
   templateUrl: './app.html',
   styleUrl: './app.less',
